@@ -269,5 +269,15 @@
   "please_verify_your_kyc_information": "Please verify your information.",
   "scanner": "Scanner",
   "user_unavailable": "User Unavailable",
-  "skip": "Skip"
+  "skip": "Skip",
+  "cards": "Cards",
+  "transaction": "Transaction",
+  "card_details": "Card Details",
+  "expiry_date": "Expiry Date",
+  "cvv": "CVV",
+  "card_pan": "card_pan",
+  "view_card": "View Card",
+  "fund_card": "Fund Card",
+  "delete_card": "Delete Card",
+  "card_history": "Card History"
 }

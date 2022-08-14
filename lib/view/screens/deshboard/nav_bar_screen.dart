@@ -13,6 +13,7 @@ import 'package:six_cash/util/dimensions.dart';
 import 'package:six_cash/util/images.dart';
 import 'package:six_cash/view/base/animated_custom_dialog.dart';
 import 'package:six_cash/view/base/logout_dialog.dart';
+import 'package:six_cash/view/screens/auth/selfie_capture/camera_screen.dart';
 import 'package:six_cash/view/screens/deshboard/widget/unicorn_outline_button.dart';
 import 'package:six_cash/view/screens/splash/splash_screen.dart';
 
@@ -73,26 +74,25 @@ class _NavBarScreenState extends State<NavBarScreen> {
           body:
               PageStorage(bucket: bucket, child: menuController.currentScreen),
           floatingActionButton: UnicornOutlineButton(
-            strokeWidth: 1.5,
-            radius: 50,
-            gradient: LinearGradient(colors: [
-              ColorResources.gradientColor,
-              ColorResources.gradientColor.withOpacity(0.5),
-              ColorResources.secondaryColor.withOpacity(0.3),
-              ColorResources.gradientColor.withOpacity(0.05),
-              ColorResources.gradientColor.withOpacity(0),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-            // child: FloatingActionButton(
-            //     backgroundColor: Theme.of(context).secondaryHeaderColor,
-            //     elevation: 1,
-            //     onPressed: () => Get.to(() => CameraScreen(
-            //         fromEditProfile: false,
-            //         isBarCodeScan: true,
-            //         isHome: true)),
-            //     child: Padding(
-            //         padding: const EdgeInsets.all(15.0),
-            //         child: Image.asset(Images.scanner_icon)))
-          ),
+              strokeWidth: 1.5,
+              radius: 50,
+              gradient: LinearGradient(colors: [
+                ColorResources.gradientColor,
+                ColorResources.gradientColor.withOpacity(0.5),
+                ColorResources.secondaryColor.withOpacity(0.3),
+                ColorResources.gradientColor.withOpacity(0.05),
+                ColorResources.gradientColor.withOpacity(0),
+              ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+              child: FloatingActionButton(
+                  backgroundColor: Theme.of(context).secondaryHeaderColor,
+                  elevation: 1,
+                  onPressed: () => Get.to(() => CameraScreen(
+                      fromEditProfile: false,
+                      isBarCodeScan: true,
+                      isHome: true)),
+                  child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Image.asset(Images.scanner_icon)))),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
           bottomNavigationBar: Container(
@@ -124,21 +124,21 @@ class _NavBarScreenState extends State<NavBarScreen> {
                   selectIndex: 0,
                 ),
                 customBottomItem(
+                  tap: () => menuController.selectCardPage(),
+                  icon: menuController.currentTab == 1
+                      ? Images.card_bold
+                      : Images.cards,
+                  name: 'cards'.tr,
+                  selectIndex: 1,
+                ),
+                const SizedBox(height: 20, width: 20),
+                customBottomItem(
                     tap: () => menuController.selectHistoryPage(),
-                    icon: menuController.currentTab == 1
+                    icon: menuController.currentTab == 2
                         ? Images.clock_icon_bold
                         : Images.clock_icon,
                     name: 'history'.tr,
-                    selectIndex: 1),
-                const SizedBox(height: 20, width: 20),
-                customBottomItem(
-                  tap: () => menuController.selectNotificationPage(),
-                  icon: menuController.currentTab == 2
-                      ? Images.notification_icon_bold
-                      : Images.notification_icon,
-                  name: 'notification'.tr,
-                  selectIndex: 2,
-                ),
+                    selectIndex: 2),
                 customBottomItem(
                   tap: () => menuController.selectProfilePage(),
                   icon: menuController.currentTab == 3

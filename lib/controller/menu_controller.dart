@@ -2,16 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/view/screens/history/history_screen.dart';
 import 'package:six_cash/view/screens/home/home_screen.dart';
-import 'package:six_cash/view/screens/notification/notification_screen.dart';
 import 'package:six_cash/view/screens/profile/profile_screen.dart';
+
+import '../view/screens/cards/cards_screen.dart';
 
 class MenuController extends GetxController implements GetxService {
   int _currentTab = 0;
   int get currentTab => _currentTab;
   final List<Widget> screen = [
     HomeScreen(),
+    CardScreen(),
     HistoryScreen(),
-    NotificationScreen(),
     ProfileScreen()
   ];
   Widget _currentScreen = HomeScreen();
@@ -28,14 +29,14 @@ class MenuController extends GetxController implements GetxService {
     update();
   }
 
-  selectHistoryPage() {
-    _currentScreen = HistoryScreen();
+  selectCardPage() {
+    _currentScreen = CardScreen();
     _currentTab = 1;
     update();
   }
 
-  selectNotificationPage() {
-    _currentScreen = NotificationScreen();
+  selectHistoryPage() {
+    _currentScreen = HistoryScreen();
     _currentTab = 2;
     update();
   }

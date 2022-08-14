@@ -51,7 +51,7 @@ class ColorResources {
   }
 
   static Color getBlackAndWhite() {
-    return Get.isDarkMode ? Color(0xFFFFFFFF) : Color(0xFF606060);
+    return Get.isDarkMode ? Color(0xFFFFFFFF) : Color(0xFF000000);
   }
 
   static Color getWhiteAndBlack() {
@@ -168,6 +168,18 @@ class ColorResources {
 
   static Color getRedColor() {
     return Get.isDarkMode ? Color(0xFFbd0a00) : Color(0xFFff795b);
+  }
+
+  static Color getCardColorFront() {
+    return Get.isDarkMode ? (0xFFF47500) : Color(0xFFADE4FD);
+  }
+
+  static Color getCardColorBack() {
+    return Get.isDarkMode ? Color(0xFFF47500) : Color(0xFFADE4FD);
+  }
+
+  static Color getCardColorText() {
+    return Get.isDarkMode ? Color(0xFFD1D5DB) : Color(0xFF4a5361);
   }
 
   ///#686868

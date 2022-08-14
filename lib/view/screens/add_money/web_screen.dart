@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:six_cash/controller/add_money_controller.dart';
@@ -22,7 +23,8 @@ class _WebScreenState extends State<WebScreen> {
   String selectedUrl;
   double value = 0.0;
   bool _isLoading = true;
-  final Completer<WebViewController> _controller = Completer<WebViewController>();
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
   WebViewController controllerGlobal;
 
   @override
@@ -36,7 +38,7 @@ class _WebScreenState extends State<WebScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () =>_exitApp(context),
+      onWillPop: () => _exitApp(context),
       child: Scaffold(
         backgroundColor: ColorResources.getBackgroundColor(),
         appBar: CustomAppbar(title: 'add_money'.tr),
@@ -49,13 +51,15 @@ class _WebScreenState extends State<WebScreen> {
                     javascriptMode: JavascriptMode.unrestricted,
                     initialUrl: selectedUrl,
                     gestureNavigationEnabled: true,
-                    userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E233 Safari/601.1',
+                    userAgent:
+                        'Mozilla/5.0 (iPhone; CPU iPhone OS 9_3 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13E233 Safari/601.1',
                     onWebViewCreated: (WebViewController webViewController) {
-                      _controller.future.then((value) => controllerGlobal = value);
+                      _controller.future
+                          .then((value) => controllerGlobal = value);
                       _controller.complete(webViewController);
                     },
                     onPageStarted: (String url) {
-                      if(url.contains(AppConstants.BASE_URL)) {
+                      if (url.contains(AppConstants.BASE_URL)) {
                         bool _isSuccess = url.contains('success');
                         bool _isFailed = url.contains('fail');
                         print('Page started loading: $url');
@@ -63,29 +67,52 @@ class _WebScreenState extends State<WebScreen> {
                           _isLoading = true;
                         });
                         if (_isSuccess) {
-                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => NavBarScreen()), (route) => false);
-                          Get.find<ProfileController>().profileData(loading:true);
-                          showAnimatedDialog(context, MyDialog(
-                            icon: Icons.done,
-                            title: 'payment_done'.tr,
-                            description: 'your_payment_successfully_done'.tr,
-                          ), dismissible: false, isFlip: true);
+                          // Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => NavBarScreen()), (route) => false);
+                          Get.find<ProfileController>()
+                              .profileData(loading: true);
+                          showAnimatedDialog(
+                                  context,
+                                  MyDialog(
+                                    icon: Icons.done,
+                                    title: 'payment_done'.tr,
+                                    description:
+                                        'your_payment_successfully_done'.tr,
+                                  ),
+                                  dismissible: false,
+                                  isFlip: true)
+                              .whenComplete(() => Navigator.of(context)
+                                  .pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (_) => NavBarScreen()),
+                                      (route) => false));
                         } else if (_isFailed) {
-                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => NavBarScreen()), (route) => false);
-                          showAnimatedDialog(context, MyDialog(
-                            icon: Icons.clear,
-                            title: 'payment_failed'.tr,
-                            description: 'your_payment_failed'.tr,
-                            isFailed: true,
-                          ), dismissible: false, isFlip: true);
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (_) => NavBarScreen()),
+                              (route) => false);
+                          showAnimatedDialog(
+                              context,
+                              MyDialog(
+                                icon: Icons.clear,
+                                title: 'payment_failed'.tr,
+                                description: 'your_payment_failed'.tr,
+                                isFailed: true,
+                              ),
+                              dismissible: false,
+                              isFlip: true);
                         } else if (url == '${AppConstants.BASE_URL}/cancel') {
-                          Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => NavBarScreen()), (route) => false);
-                          showAnimatedDialog(context, MyDialog(
-                            icon: Icons.clear,
-                            title: 'payment_cancelled'.tr,
-                            description: 'your_payment_cancelled'.tr,
-                            isFailed: true,
-                          ), dismissible: false, isFlip: true);
+                          Navigator.of(context).pushAndRemoveUntil(
+                              MaterialPageRoute(builder: (_) => NavBarScreen()),
+                              (route) => false);
+                          showAnimatedDialog(
+                              context,
+                              MyDialog(
+                                icon: Icons.clear,
+                                title: 'payment_cancelled'.tr,
+                                description: 'your_payment_cancelled'.tr,
+                                isFailed: true,
+                              ),
+                              dismissible: false,
+                              isFlip: true);
                         }
                       }
                     },
@@ -96,10 +123,12 @@ class _WebScreenState extends State<WebScreen> {
                       });
                     },
                   ),
-
-                  _isLoading ? Center(
-                    child: CustomLoader(color: Theme.of(context).primaryColor),
-                  ) : SizedBox.shrink(),
+                  _isLoading
+                      ? Center(
+                          child: CustomLoader(
+                              color: Theme.of(context).primaryColor),
+                        )
+                      : SizedBox.shrink(),
                 ],
               ),
             ),
@@ -114,13 +143,18 @@ class _WebScreenState extends State<WebScreen> {
       controllerGlobal.goBack();
       return Future.value(false);
     } else {
-      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => NavBarScreen()), (route) => false);
-      showAnimatedDialog(context, MyDialog(
-        icon: Icons.clear,
-        title: 'payment_cancelled'.tr,
-        description: 'your_payment_cancelled'.tr,
-        isFailed: true,
-      ), dismissible: false, isFlip: true);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => NavBarScreen()), (route) => false);
+      showAnimatedDialog(
+          context,
+          MyDialog(
+            icon: Icons.clear,
+            title: 'payment_cancelled'.tr,
+            description: 'your_payment_cancelled'.tr,
+            isFailed: true,
+          ),
+          dismissible: false,
+          isFlip: true);
       return Future.value(true);
     }
   }

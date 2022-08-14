@@ -272,6 +272,19 @@
   "please_verify_your_kyc_information": "يرجى التحقق من المعلومات الخاصة بك.",
   "retry": "أعد المحاولة",
   "user_unavailable": "المستخدم غير متوفر",
-  "skip": "يتخطى"
+  "skip": "يتخطى",
+  "cards": "بطاقة",
+  "transaction": "عملية تجارية",
+  "card_details": "معلومات البطاقة",
+  "expiry_date": "تاريخ انتهاء الصلاحية",
+  "cvv": "CVV",
+  "card_pan": "عموم بطاقة",
+  "view_card": "بطاقة عرض",
+  "fund_card": "بطاقة الصندوق",
+  "delete_card": "حذف البطاقة",
+  "card_history": "تاريخ البطاقة"
+
+
+
 
 }

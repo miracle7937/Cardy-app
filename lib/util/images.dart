@@ -28,10 +28,13 @@ class Images {
   static const String notification_icon = 'assets/image/Notification.png';
   static const String notification_icon_bold =
       'assets/image/Notification_bold.png';
+  static const String card_bold = 'assets/image/cards_bold.png';
+  static const String cards = 'assets/image/cards.png';
   static const String profile_icon = 'assets/image/Profile.png';
   static const String profile_icon_bold = 'assets/image/Profile_bold.png';
   static const String bold_notification_icon =
       'assets/image/Notification_bold.png';
+  static const String copy_paste = 'assets/image/copy_paste.png';
   static const String wolet_logo = 'assets/image/wolet.png';
   static const String sendMoney_logo = 'assets/image/send_money.png';
   static const String cashOut_logo = 'assets/image/cashout.png';
